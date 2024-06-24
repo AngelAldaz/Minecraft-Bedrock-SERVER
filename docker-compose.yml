@@ -1,0 +1,13 @@
+services:
+  minecraft:
+    image: itzg/minecraft-bedrock-server
+    stdin_open: true
+    tty: true
+    ports:
+      - "19132:19132/udp"
+    volumes:
+      - ./data:/data
+    environment:
+      EULA: "TRUE"
+      DIFFICULTY: hard
+    restart: unless-stopped
