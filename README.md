@@ -1,83 +1,115 @@
 # Minecraft-Bedrock-SERVER
-Para levantar un server de minecraft bedrock en google cloud o algun otro servicio de la nube, usando maquina virtual
 
+Guía para levantar un servidor de Minecraft Bedrock en Google Cloud o algún otro servicio en la nube usando una máquina virtual.
 
+## Pasos a seguir en la máquina virtual
 
-## Pasos a realizar una vez estando en la maquina virtual
+### Actualizar el sistema e instalar Docker y Docker-Compose
 
-### Actualizamos el sistema e instalamos Docker y Docker-Compose
+1. **Actualizar el sistema:**
 
-Actualizamos el sistema desplegado.
+    ```bash
+    sudo apt-get update
+    ```
 
-```
-sudo apt-get update
-```
+2. **Instalar Docker:**
 
-Luego instalamos docker.
+    ```bash
+    sudo apt-get install docker.io --yes
+    ```
 
-```
-sudo apt-get install docker.io --yes
-```
+3. **Convertirse en usuario root:**
 
-Nos ponemos como usuario root.
+    ```bash
+    sudo su
+    ```
 
-```
-sudo su
-```
+4. **Instalar Docker-Compose:**
 
-e instalamos docker-compose.
+    ```bash
+    curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+    ```
 
-```
-curl -L https://github.com/docker/compose/releases/download/1.28.5/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-```
+5. **Verificar las instalaciones:**
 
-Verificamos que todo esté instalado. Si Docker y Docker-compose están instalados, al ejecutar los siguientes comandos, obtendremos un listado de comandos disponibles.
+    Para Docker:
 
-```
-docker 
-```
+    ```bash
+    docker
+    ```
 
-```
-docker-compose
-```
+    Para Docker-Compose:
 
-### Activacion del contenedor
+    ```bash
+    docker-compose
+    ```
 
-Clonamos este repositorio, tomando en cuenta que el mundo sera en bedrock y en modo dificil.
+### Activación del contenedor
 
-```
-git clone https://github.com/AngelAldaz/Minecraft-Bedrock-SERVER.git
-```
+1. **Clonar el repositorio:**
 
-Una vez clonado entramos a la carpeta creada.
+    ```bash
+    git clone https://github.com/AngelAldaz/Minecraft-Bedrock-SERVER.git
+    ```
 
-```
-cd Minecraft-Bedrock-SERVER
-```
+2. **Acceder a la carpeta del repositorio clonado:**
 
-Levantamos el contenedor.
+    ```bash
+    cd Minecraft-Bedrock-SERVER
+    ```
 
-```
-docker-compose up -d
-```
+3. **Levantar el contenedor:**
 
-Se identifica el id del contenedor.
+    ```bash
+    docker-compose up -d
+    ```
 
-```
-docker ps
-```
+4. **Identificar el ID del contenedor:**
 
-Revisamos los logs para comprobar que todo este en orden, no olvides reemplazar *TU_ID_DE_CONTENEDOR* por el id de tu contenedor.
+    ```bash
+    docker ps
+    ```
 
-```
-docker logs -f TU_ID_DE_CONTENEDOR
-```
+5. **Revisar los logs para asegurar que todo esté en orden:**
 
-Debemos de poder observar que el servidor esta corriendo y se encuentra en dificil.
+    Reemplazar `TU_ID_DE_CONTENEDOR` por el ID de tu contenedor.
 
-### Agregar cheats a un usuario, si se desea.
+    ```bash
+    docker logs -f TU_ID_DE_CONTENEDOR
+    ```
 
-Una vez que un usuario ingrese es necesario tomar su "xuid", lo cual es el identificador de cada usuario, para asi poner como administrador si se desea, con el objetivo de permitirle usar cheats, este podremos encontrarlo usando el comando previamente usado para los logs.
+### Agregar permisos de administrador (cheats)
 
-Una vez identificado el usuario que se desea usar como administrador es importante cambiar el archivo de 
+1. **Obtener el "xuid" del usuario:**
+
+    Observa los logs para encontrar el identificador del usuario (xuid).
+
+2. **Modificar el archivo `permissions.json`:**
+
+    Reemplaza `TU_XUID` por el xuid del usuario al que deseas otorgar permisos de administrador.
+
+    ```json
+    [
+      {
+        "permission": "operator",
+        "xuid": "TU_XUID"
+      }
+    ]
+    ```
+
+3. **Reiniciar el contenedor:**
+
+    Reemplazar `TU_ID_DE_CONTENEDOR` por el ID de tu contenedor.
+
+    ```bash
+    docker restart TU_ID_DE_CONTENEDOR
+    ```
+
+4. **Comprobar los logs para verificar que todo esté correcto:**
+
+    ```bash
+    docker logs -f TU_ID_DE_CONTENEDOR
+    ```
+
+¡Y listo! Ya puedes disfrutar de tu servidor de Minecraft Bedrock.
