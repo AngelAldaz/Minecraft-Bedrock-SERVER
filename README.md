@@ -42,8 +42,42 @@ docker
 docker-compose
 ```
 
-### Clonamos este repositorio, tomando en cuenta que el mundo sera en bedrock y en modo dificil
+### Activacion del contenedor
+
+Clonamos este repositorio, tomando en cuenta que el mundo sera en bedrock y en modo dificil.
 
 ```
-git clone 
+git clone https://github.com/AngelAldaz/Minecraft-Bedrock-SERVER.git
 ```
+
+Una vez clonado entramos a la carpeta creada.
+
+```
+cd Minecraft-Bedrock-SERVER
+```
+
+Levantamos el contenedor.
+
+```
+docker-compose up -d
+```
+
+Se identifica el id del contenedor.
+
+```
+docker ps
+```
+
+Revisamos los logs para comprobar que todo este en orden, no olvides reemplazar *TU_ID_DE_CONTENEDOR* por el id de tu contenedor.
+
+```
+docker logs -f TU_ID_DE_CONTENEDOR
+```
+
+Debemos de poder observar que el servidor esta corriendo y se encuentra en dificil.
+
+### Agregar cheats a un usuario, si se desea.
+
+Una vez que un usuario ingrese es necesario tomar su "xuid", lo cual es el identificador de cada usuario, para asi poner como administrador si se desea, con el objetivo de permitirle usar cheats, este podremos encontrarlo usando el comando previamente usado para los logs.
+
+Una vez identificado el usuario que se desea usar como administrador es importante cambiar el archivo de 
