@@ -43,3 +43,7 @@ docker-compose
 ```
 
 ### Clonamos este repositorio, tomando en cuenta que el mundo sera en bedrock y en modo dificil
+
+```
+git clone 
+```
