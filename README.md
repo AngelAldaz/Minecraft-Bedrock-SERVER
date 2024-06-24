@@ -85,31 +85,18 @@ Guía para levantar un servidor de Minecraft Bedrock en Google Cloud o algún ot
 
     Observa los logs para encontrar el identificador del usuario (xuid).
 
-2. **Modificar el archivo `permissions.json`:**
+2. **Entrar a la consola privilegiada del juego:**
 
-    Reemplaza `TU_XUID` por el xuid del usuario al que deseas otorgar permisos de administrador.
-
-    ```json
-    [
-      {
-        "permission": "operator",
-        "xuid": "TU_XUID"
-      }
-    ]
-    ```
-
-3. **Reiniciar el contenedor:**
-
-    Reemplazar `TU_ID_DE_CONTENEDOR` por el ID de tu contenedor.
+    Usaremos attach para poder ejecutar comandos del juego, tales como darle op a un jugador.
 
     ```bash
-    docker restart TU_ID_DE_CONTENEDOR
+    docker attach CONTAINER_NAME_OR_ID
     ```
 
-4. **Comprobar los logs para verificar que todo esté correcto:**
+3. **Ejecutar el comando para otorgar permisos de administrador:**
 
     ```bash
-    docker logs -f TU_ID_DE_CONTENEDOR
+    op TU_XUID
     ```
 
 ¡Y listo! Ya puedes disfrutar de tu servidor de Minecraft Bedrock.
