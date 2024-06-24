@@ -9,5 +9,5 @@ services:
       - ./data:/data
     environment:
       EULA: "TRUE"
-      DIFFICULTY: hard
+      DIFFICULTY: "hard"
     restart: unless-stopped
